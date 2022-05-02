@@ -4,9 +4,22 @@ import * as React from 'react';
 import {StyleSheet, Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import {StartScreen, HomeScreen, QuizScreen} from "./Screens.js";
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {StartScreen, HomeScreen, QuizScreen, SearchScreen, BrowseScreen} from "./Screens.js";
 
 const Stack = createNativeStackNavigator();
+
+const Tab = createBottomTabNavigator();
+
+function TabScreen(navigation) {
+  return(
+      <Tab.Navigator screenOptions={{headerShown: false}}>
+      <Tab.Screen name="Home" component={HomeScreen} />
+      <Tab.Screen name="Search" component={SearchScreen} />
+      <Tab.Screen name='Browse' component={BrowseScreen} />
+    </Tab.Navigator>
+  )
+}
 
 function App() {
   return (
@@ -25,12 +38,13 @@ function App() {
           />
         <Stack.Screen
           name="homeScreen"
-          component={HomeScreen}
+          component={TabScreen}
           options={{
             headerShown: false
           }}
         />
       </Stack.Navigator>
+    
     </NavigationContainer>
   );
 }

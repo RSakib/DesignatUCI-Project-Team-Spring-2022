@@ -32,10 +32,7 @@ return (
 
 export function HomeScreen(navigation) {
 return (
-    <View style={[styles.container, {
-        // Try setting `flexDirection` to `"row"`.
-        flexDirection: "column"
-      }]}>
+    <View style={[styles.container, {flexDirection: "column"}]}>
         <View style={{ flex: 1, backgroundColor: "red" , flexBasis:280}} />
         <View style={{ flex: 1, backgroundColor: "darkorange", flexBasis:210 }} />
         <View style={{ flex: 1, backgroundColor: "green", flexBasis:210 }} />
@@ -43,6 +40,27 @@ return (
       </View>
 )
 }
+
+export function SearchScreen(navigation) {
+    return (
+        <View style={[styles.container, {flexDirection: "column"}]}>
+            <View style={[styles.center]}>
+                <Text>Searching for some sanity here</Text>
+            </View>
+        </View>
+    )
+}
+
+export function BrowseScreen(navigation) {
+    return (
+        <View style={[styles.container, {flexDirection: "column"}]}>
+            <View style={[styles.center]}>
+                <Text>Browsing for some sanity, idk man its a Sunday</Text>
+            </View>
+        </View>
+    )
+}
+
 
 const styles = StyleSheet.create({
     container: {
@@ -59,4 +77,9 @@ const styles = StyleSheet.create({
       justifyContent: "flex-end",
       marginBottom: 36
     },
+    center: {
+        flex:1,
+        alignItems: "center",
+        justifyContent: 'center',
+    }
   });
