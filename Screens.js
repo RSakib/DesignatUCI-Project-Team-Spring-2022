@@ -98,42 +98,31 @@ const My_styles = StyleSheet.create({
     {id:12, text: 'lit'}
   ]
 
-  function Slide_Deck() {
-    const navigation = useNavigation();
-      return(
-        <View style={styles.red_item}>
-        <Button
-        title='Nah Not really'
-        onPress={() => navigation.navigate('quizScreen')}
-        />
-        </View>
-      )
-    
-  }
-  
-  const Item = ({item}) => {
-      if (item.id == 0) {
-        return (
-            <Slide_Deck/>
-          )
-      }
-      else {
-        return (
-            <View style={[styles.item, styles.shadow]}>
-              <Text>{item.text}</Text>
-            </View>
-          );
-      }
-    
-  }
-
   function List(props) {
+    const navigation = useNavigation();
     return(
     <FlatList
       contentContainerStyle={styles.list}
       data={data}
-      renderItem={Item}
       keyExtractor={item => item.id}
+      renderItem={({item}) => {
+        if (item.id == 0) {
+          return (
+              <View style={styles.red_item}>
+              <Button
+              title={item.text}
+              onPress={() => navigation.navigate('quizScreen')}
+              />
+              </View>
+            )
+        }
+        else {
+          return (
+              <View style={[styles.item, styles.shadow]}>
+                <Text>{item.text}</Text>
+              </View>
+            );
+        }}}
       />
   )}
   
