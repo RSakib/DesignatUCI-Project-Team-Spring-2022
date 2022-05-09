@@ -1,4 +1,5 @@
 import {StyleSheet, Button, View, Text, FlatList, SafeAreaView } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 export function StartScreen({navigation}) {
 return (
@@ -22,7 +23,7 @@ return (
             <View style={My_styles.bottom}>
                 <Button
                 title='Nah Not really'
-                onPress={() => navigation.navigate('HomeScreen')}
+                onPress={() => navigation.navigate('homeScreen')}
                 />
             </View>
         </View>
@@ -33,13 +34,7 @@ return (
 export function HomeScreen(navigation) {
 return (
     <SafeAreaView style={[My_styles.container, {flexDirection: "column"}]}>
-      <FlatList
-      contentContainerStyle={styles.list}
-      data={data}
-      renderItem={Item}
-      keyExtractor={item => item.id}
-      onPress={() => navigate(HomeScreen)}
-      />
+      <List/>
     </SafeAreaView>
 )
 }
@@ -104,10 +99,12 @@ const My_styles = StyleSheet.create({
   ]
 
   function Slide_Deck() {
+    const navigation = useNavigation();
       return(
         <View style={styles.red_item}>
         <Button
         title='Nah Not really'
+        onPress={() => navigation.navigate('quizScreen')}
         />
         </View>
       )
@@ -129,6 +126,16 @@ const My_styles = StyleSheet.create({
       }
     
   }
+
+  function List(props) {
+    return(
+    <FlatList
+      contentContainerStyle={styles.list}
+      data={data}
+      renderItem={Item}
+      keyExtractor={item => item.id}
+      />
+  )}
   
 
   const styles = StyleSheet.create({
