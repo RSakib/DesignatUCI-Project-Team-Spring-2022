@@ -33,7 +33,13 @@ return (
 export function HomeScreen(navigation) {
 return (
     <SafeAreaView style={[My_styles.container, {flexDirection: "column"}]}>
-        <List/>
+      <FlatList
+      contentContainerStyle={styles.list}
+      data={data}
+      renderItem={Item}
+      keyExtractor={item => item.id}
+      onPress={() => navigate(HomeScreen)}
+      />
     </SafeAreaView>
 )
 }
@@ -97,12 +103,11 @@ const My_styles = StyleSheet.create({
     {id:12, text: 'lit'}
   ]
 
-  function Slide_Deck(navigation) {
+  function Slide_Deck() {
       return(
         <View style={styles.red_item}>
         <Button
         title='Nah Not really'
-        onPress={() => navigation.navigate('homeScreen')}
         />
         </View>
       )
@@ -125,16 +130,6 @@ const My_styles = StyleSheet.create({
     
   }
   
-  let List = () => {
-    return (
-      <FlatList
-        contentContainerStyle={styles.list}
-        data={data}
-        renderItem={Item}
-        keyExtractor={item => item.id}
-      />
-    );
-  }
 
   const styles = StyleSheet.create({
     item: {
