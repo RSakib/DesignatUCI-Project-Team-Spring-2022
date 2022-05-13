@@ -5,7 +5,8 @@ import {StyleSheet, Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import {StartScreen, HomeScreen, QuizScreen, SearchScreen, BrowseScreen} from "./Screens.js";
+import {HomeScreen, SearchScreen, BrowseScreen} from "./Screens.js";
+import { StartScreen, QuizScreen } from './QuizScreens.js';
 
 const Stack = createNativeStackNavigator();
 
@@ -24,7 +25,7 @@ function TabScreen(navigation) {
 function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="homeScreen">
+      <Stack.Navigator initialRouteName="startScreen">
         <Stack.Screen 
           name="startScreen" 
           component={StartScreen}  

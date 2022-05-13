@@ -1,35 +1,6 @@
-import {StyleSheet, Button, View, Text, FlatList, SafeAreaView } from 'react-native';
+import {Button, View, Text, FlatList, SafeAreaView } from 'react-native';
+import { styles, My_styles } from './Styles';
 import { useNavigation } from '@react-navigation/native';
-
-export function StartScreen({navigation}) {
-return (
-    <View style={My_styles.container}>
-        <Text>Take This Quiz for the App</Text>
-        <Button
-            title="Get Started"
-            onPress={() => navigation.navigate('quizScreen')}
-        />
-    </View>
-);
-}
-
-export function QuizScreen({navigation}) {
-return (
-    <View style={My_styles.container}>
-
-        <View style={My_styles.top}>
-        <Text>You Like Games?</Text>
-
-            <View style={My_styles.bottom}>
-                <Button
-                title='Nah Not really'
-                onPress={() => navigation.navigate('homeScreen')}
-                />
-            </View>
-        </View>
-    </View>
-);
-}
 
 export function HomeScreen(navigation) {
 return (
@@ -58,29 +29,6 @@ export function BrowseScreen(navigation) {
         </View>
     )
 }
-
-
-const My_styles = StyleSheet.create({
-    container: {
-      flex: 1,
-    },
-    top: {
-      flex: 1,
-      alignItems: 'center',
-      justifyContent: 'flex-start',
-      marginTop: 100
-    },
-    bottom: {
-      flex: 1,
-      justifyContent: "flex-end",
-      marginBottom: 36
-    },
-    center: {
-        flex:1,
-        alignItems: "center",
-        justifyContent: 'center',
-    }
-  });
 
   const data = [
     {id:0, text: 'Empty'},
@@ -127,25 +75,4 @@ const My_styles = StyleSheet.create({
   )}
   
 
-  const styles = StyleSheet.create({
-    item: {
-      backgroundColor: '#fff',
-      padding: 20,
-      marginHorizontal: 10,
-      marginBottom: 3.5,
-      flexDirection: 'row'
-    },
-    red_item: {
-        backgroundColor: 'red',
-        padding: 150
-      },
-    shadow: {
-      shadowColor: '#000',
-      shadowOffset: {
-        width: 0,
-        height: 10
-      },
-      shadowOpacity: 0.47,
-      shadowRadius: 9,
-    }
-  });
+  
