@@ -26,7 +26,7 @@ export const My_styles = StyleSheet.create({
       flex: 1,
       alignContent:'center',
       justifyContent:'center',
-      backgroundColor: 'red'}
+      zIndex:2}
   });
 
 export const styles = StyleSheet.create({
@@ -61,12 +61,14 @@ export const styles = StyleSheet.create({
       flexWrap:'nowrap',
       fontFamily:'FiraSans_600SemiBold'
     },
-    Orange_Text: {
+    Orange_Start_Text: {
       flex:2,
       color: "#E4842E",
       fontSize: 34,
       textAlign:'center',
       fontFamily:'FiraSans_600SemiBold',
-      alignContent: 'flex-start'
+      alignContent: 'flex-start',
+      marginTop: 200,
+      zIndex:2
     }
   })
