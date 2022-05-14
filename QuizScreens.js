@@ -1,14 +1,14 @@
-import {StyleSheet, TouchableOpacity, View, Text, FlatList, SafeAreaView } from 'react-native';
-import { styles, My_styles } from './Styles';
+import {TouchableOpacity, View, Text, FlatList, SafeAreaView } from 'react-native';
+import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { useNavigation } from '@react-navigation/native';
-import { useFonts, FiraSans_700Bold } from '@expo-google-fonts/inter';
 
 export function StartScreen({navigation}) {
     return (
         <View style={My_styles.container}>
-            <View style={My_styles.top}>
-                <GameMatchSvg/>
+            <View style={My_styles.starttop}>
+                <GameMatchSvg style={[{marginTop:200}]}/>
+                <Text style={text_styles.Orange_Text}>Level Up Your{"\n"}Library {"\n"} See What You Have Missed Out On</Text>
             </View>
             <View style={[]}>
                 <View style={[{justifyContent:'center', alignItems:'center', flex:0}]}>
@@ -16,7 +16,7 @@ export function StartScreen({navigation}) {
                         style={[{backgroundColor: 'rgb(77,76,126)', flex:0, alignItems:'center', justifyContent:'flex-end', paddingLeft:50, paddingRight: 50, paddingTop:12, paddingBottom:12, borderRadius:10, marginBottom: 40}]}
                         onPress={() => navigation.navigate('quizScreen')}
                         >
-                            <Text style={[{color: "rgb(233,213,218)", fontSize: 26, justifyContent: 'center', alignContent:'center'}]}>Let's Get Started</Text>
+                            <Text style={[text_styles.Button]}>Let's Get Started</Text>
                         </TouchableOpacity>
                 </View>
                 

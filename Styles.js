@@ -9,7 +9,7 @@ export const My_styles = StyleSheet.create({
       flex: 1,
       alignItems: 'center',
       justifyContent: 'flex-start',
-      marginTop: 100
+      backgroundColor: 'red'
     },
     bottom: {
       flex: 1,
@@ -21,7 +21,12 @@ export const My_styles = StyleSheet.create({
         flex:1,
         alignItems: "center",
         justifyContent: 'center',
-    }
+    },
+    starttop: {
+      flex: 1,
+      alignContent:'center',
+      justifyContent:'center',
+      backgroundColor: 'red'}
   });
 
 export const styles = StyleSheet.create({
@@ -42,7 +47,26 @@ export const styles = StyleSheet.create({
         width: 0,
         height: 10
       },
-      shadowOpacity: 0.47,
+    shadowOpacity: 0.47,
       shadowRadius: 9,
     }
   });
+
+  export const text_styles = StyleSheet.create({
+    Button: {
+      color: "#E9D5DA",
+      fontSize: 34,
+      justifyContent: 'center',
+      alignContent:'center',
+      flexWrap:'nowrap',
+      fontFamily:'FiraSans_600SemiBold'
+    },
+    Orange_Text: {
+      flex:2,
+      color: "#E4842E",
+      fontSize: 34,
+      textAlign:'center',
+      fontFamily:'FiraSans_600SemiBold',
+      alignContent: 'flex-start'
+    }
+  })

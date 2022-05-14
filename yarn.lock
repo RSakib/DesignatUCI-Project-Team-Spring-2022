@@ -1054,6 +1054,21 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@expo-google-fonts/arimo@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/arimo/-/arimo-0.2.2.tgz#93346cede33be83857121502c7b6fb784fe5d7b2"
+  integrity sha512-aS2Aw4P9nhtYgIycZg5KdD4/IlfQVns3HDhquThwStxkVJ5fP2DiCw7dX7JPS47dIY+plRwQfGLL68zrGgj1eg==
+
+"@expo-google-fonts/fira-sans@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/fira-sans/-/fira-sans-0.2.2.tgz#ca35c2bc3254992ded5e33c128633083690d8f45"
+  integrity sha512-JUBJNYY5NpSoui3haMK89OmLC3KGawSwNR843UP+qLZrYM5qn/lj7GeNfIP8gMuaat0FkMnlnZNZba4prXyi5A==
+
+"@expo-google-fonts/hind-siliguri@^0.2.2":
+  version "0.2.2"
+  resolved "https://registry.yarnpkg.com/@expo-google-fonts/hind-siliguri/-/hind-siliguri-0.2.2.tgz#3e097edae8a26bb9b7cf76d28bc32f50baedbe33"
+  integrity sha512-85OlhpS8YDYOk+TouuVvFjmJZVOiOSucrom8HoQWfIh14ZQWamzkc03ctQfe2JNbcunldaVtLqWH1AIDtkLNyQ==
+
 "@expo-google-fonts/inter@^0.2.2":
   version "0.2.2"
   resolved "https://registry.yarnpkg.com/@expo-google-fonts/inter/-/inter-0.2.2.tgz#bd5624be6c92e7621aa9ddb5bd72757604729121"
@@ -2719,6 +2734,13 @@ expand-brackets@^2.1.4:
     snapdragon "^0.8.1"
     to-regex "^3.0.1"
 
+expo-app-loading@~1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/expo-app-loading/-/expo-app-loading-1.3.0.tgz#2023f11e1420d423478474942c0d1c74e1afa335"
+  integrity sha512-IbMI1w2a79IXw2uH/dgwxWmXW9uR5DNjY/mDKdUCGR0tjMeeliZRq66gGdRLgCkfXS2b2WMIi03gB05l7SiQeg==
+  dependencies:
+    expo-splash-screen "~0.14.0"
+
 expo-application@~4.0.2:
   version "4.0.2"
   resolved "https://registry.npmjs.org/expo-application/-/expo-application-4.0.2.tgz"
@@ -2787,7 +2809,7 @@ expo-modules-core@0.6.5:
     compare-versions "^3.4.0"
     invariant "^2.2.4"
 
-expo-splash-screen@~0.14.1:
+expo-splash-screen@~0.14.0, expo-splash-screen@~0.14.1:
   version "0.14.2"
   resolved "https://registry.yarnpkg.com/expo-splash-screen/-/expo-splash-screen-0.14.2.tgz#2598d6980e71ecd8b7467ca821fb9dbfb80f355b"
   integrity sha512-X25D/0E2AWEFGgDWIVXZ5Bl7FhYk7TgVhEWvplBqrDY7G7vg5l1aoH6PelOQINWPsa1dcRyA7REdN2ltO+0LAw==

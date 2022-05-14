@@ -6,6 +6,8 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {HomeScreen, SearchScreen, BrowseScreen} from "./Screens.js";
 import { StartScreen, QuizScreen } from './QuizScreens.js';
+import AppLoading from 'expo-app-loading';
+import { useFonts, FiraSans_600SemiBold } from '@expo-google-fonts/fira-sans';
 
 const Stack = createNativeStackNavigator();
 
@@ -22,7 +24,14 @@ function TabScreen(navigation) {
 }
 
 function App() {
+  let [fontsLoaded] = useFonts({
+    FiraSans_600SemiBold
+  });
 
+  if (!fontsLoaded) {
+    return <AppLoading />;
+  }
+  
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="startScreen">
