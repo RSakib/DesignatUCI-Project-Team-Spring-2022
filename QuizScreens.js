@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, Text, FlatList, SafeAreaView, Image } from 'react-native';
+import {TouchableOpacity, View, Text, FlatList, SafeAreaView, ImageBackground } from 'react-native';
 import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { useNavigation } from '@react-navigation/native';
@@ -7,9 +7,10 @@ export function StartScreen({navigation}) {
     return (
         <View style={My_styles.container}>
             <View style={My_styles.starttop}>
-                <GameMatchSvg/>
-                <Text style={text_styles.Orange_Start_Text}>Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
-                
+                <ImageBackground source={require('./assets/Coverpage.png')} resizeMode='cover' style={styles.image}>
+                    <GameMatchSvg/>
+                    <Text style={text_styles.Orange_Start_Text}>Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
+                </ImageBackground>
             </View>
             <View style={[]}>
                 <View style={[{justifyContent:'center', alignItems:'center', flex:0}]}>

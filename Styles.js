@@ -48,6 +48,10 @@ export const styles = StyleSheet.create({
       },
     shadowOpacity: 0.47,
       shadowRadius: 9,
+    },
+    image: {
+      flex:1,
+      justifyContent:'center'
     }
   });
 
