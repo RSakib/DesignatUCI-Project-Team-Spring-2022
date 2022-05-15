@@ -1,4 +1,4 @@
-import {TouchableOpacity, View, Text, FlatList, SafeAreaView, ImageBackground } from 'react-native';
+import {TouchableOpacity, View, Text, FlatList, SafeAreaView, ImageBackground, Image } from 'react-native';
 import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -20,8 +20,8 @@ export function StartScreen({navigation}) {
             <View style={[]}>
                 <View style={[{justifyContent:'center', alignItems:'center', flex:0}]}>
                     <TouchableOpacity
-                        style={[{backgroundColor: 'rgb(77,76,126)', flex:0, alignItems:'center', justifyContent:'flex-end', paddingLeft:50, paddingRight: 50, paddingTop:12, paddingBottom:12, borderRadius:10, marginBottom: 40}]}
-                        onPress={() => navigation.navigate('quizScreen')}
+                        style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end', paddingLeft:50, paddingRight: 50, paddingTop:12, paddingBottom:12, marginBottom: 40}]}
+                        onPress={() => navigation.navigate('quizScreen1')}
                         >
                             <Text style={[text_styles.Button]}>Let's Get Started</Text>
                         </TouchableOpacity>
@@ -32,21 +32,30 @@ export function StartScreen({navigation}) {
     );
     }
 
-export function QuizScreen({navigation}) {
+export function QuizScreen1({navigation}) {
 
     return (
-        <View style={My_styles.container}>
-    
-            <View style={My_styles.top}>
-            <Text>You Like Games?</Text>
-    
-                <View style={My_styles.bottom}>
-                    <TouchableOpacity
-                    title='Nah Not really'
-                    onPress={() => navigation.navigate('homeScreen')}
-                    />
+        <SafeAreaView style={My_styles.AndroidSafeArea}>
+            <View style={[My_styles.container, {backgroundColor:'red',flexDirection:'column',justifyContent:'space-between'}]}>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                    <View style={[{flexDirection:'row',justifyContent:'flex-start', alignContent:'center'}]}>
+                        <Image source={require('./assets/Page1.png')} style={[{height:41, width:70, marginLeft:15}]}/>
+                    </View>
+                    <TouchableOpacity style={[{justifyContent:'flex-end', alignItems:'flex-end', marginRight:25}]} onPress={() => navigation.navigate('homeScreen')}>
+                            <Text style={[text_styles.Button,{textAlign:'right', fontFamily:'FiraSans_500Medium', fontSize:25, color:'#827397'}]}>Skip</Text>
+                    </TouchableOpacity>
+                    
                 </View>
+                <FlatList>
+                    
+                </FlatList>
+                <TouchableOpacity
+                    style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5}]}
+                    onPress={() => navigation.navigate('quizScreen1')}
+                    >
+                        <Text style={[text_styles.Button]}>Next</Text>
+                </TouchableOpacity>
             </View>
-        </View>
+        </SafeAreaView>
     );
     }

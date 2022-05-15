@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, StatusBar} from 'react-native';
 
 export const My_styles = StyleSheet.create({
     container: {
@@ -25,7 +25,19 @@ export const My_styles = StyleSheet.create({
     starttop: {
       flex: 1,
       alignContent:'center',
-      justifyContent:'center'}
+      justifyContent:'center'
+    },
+    AndroidSafeArea: {
+        flex: 1,
+        backgroundColor: "rgb(32,29,60)",
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight+25 : 0
+      },
+    Button: {
+      backgroundColor: 'rgb(77,76,126)',
+      borderRadius:10,
+      justifyContent:'center',
+      alignContent:'center'
+    }
   });
 
 export const styles = StyleSheet.create({
@@ -79,5 +91,5 @@ export const styles = StyleSheet.create({
       fontFamily:'FiraSans_600SemiBold',
       alignContent: 'flex-start',
       marginTop: 200,
-    }
+    },
   })
