@@ -1,7 +1,6 @@
 import {TouchableOpacity, View, Text, FlatList, SafeAreaView, Image } from 'react-native';
 import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
-import CoverPageSvg from './svgs/CoverPageSvg';
 import { useNavigation } from '@react-navigation/native';
 
 export function StartScreen({navigation}) {
@@ -9,7 +8,6 @@ export function StartScreen({navigation}) {
         <View style={My_styles.container}>
             <View style={My_styles.starttop}>
                 <GameMatchSvg/>
-                <CoverPageSvg/>
                 <Text style={text_styles.Orange_Start_Text}>Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
                 
             </View>

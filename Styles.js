@@ -25,8 +25,7 @@ export const My_styles = StyleSheet.create({
     starttop: {
       flex: 1,
       alignContent:'center',
-      justifyContent:'center',
-      zIndex:2}
+      justifyContent:'center'}
   });
 
 export const styles = StyleSheet.create({
@@ -69,6 +68,5 @@ export const styles = StyleSheet.create({
       fontFamily:'FiraSans_600SemiBold',
       alignContent: 'flex-start',
       marginTop: 200,
-      zIndex:2
     }
   })
