@@ -8,13 +8,13 @@ export function StartScreen({navigation}) {
     return (
         <View style={My_styles.container}>
             <View style={My_styles.starttop}>
-                <ImageBackground source={require('./assets/Coverpage.png')} resizeMode='cover' style={styles.image} imageStyle={{opacity:0.5}}>
+                <ImageBackground source={require('./assets/Coverpage.png')} resizeMode='cover' style={styles.image} imageStyle={{opacity:0.6}}>
                     <LinearGradient
                         colors={['transparent', '#201D3C']}
                         style={styles.Gradient}>
                     </LinearGradient>
                     <GameMatchSvg/>
-                    <Text style={text_styles.Orange_Start_Text}>Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
+                    <Text style={text_styles.Orange_Start_Text}>{"\n"}Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
                 </ImageBackground>
             </View>
             <View style={[]}>
