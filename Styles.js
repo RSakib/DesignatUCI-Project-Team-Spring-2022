@@ -52,6 +52,13 @@ export const styles = StyleSheet.create({
     image: {
       flex:1,
       justifyContent:'center'
+    },
+    Gradient: {
+      position:'absolute',
+      left:0,
+      right:0,
+      bottom:0,
+      height:'150%'
     }
   });
 
