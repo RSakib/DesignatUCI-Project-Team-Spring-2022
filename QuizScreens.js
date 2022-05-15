@@ -7,7 +7,7 @@ export function StartScreen({navigation}) {
     return (
         <View style={My_styles.container}>
             <View style={My_styles.starttop}>
-                <ImageBackground source={require('./assets/Coverpage.png')} resizeMode='cover' style={styles.image}>
+                <ImageBackground source={require('./assets/Coverpage.png')} resizeMode='cover' style={styles.image} imageStyle={{opacity:0.5}}>
                     <GameMatchSvg/>
                     <Text style={text_styles.Orange_Start_Text}>Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
                 </ImageBackground>
