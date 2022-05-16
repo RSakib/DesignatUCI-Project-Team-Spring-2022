@@ -3,7 +3,7 @@ import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export function StartScreen({navigation}) {
     return (
@@ -33,51 +33,55 @@ export function StartScreen({navigation}) {
     );
     }
 
-    const DATA = [
-        {
-            id: 1,
-            title: "Playstation",
-            icon: require("./assets/PSIcon.png")
-        },
-        {
-            id: 2,
-            title: "Xbox",
-            icon: require("./assets/XboxIcon.png")
-        },
-        {
-            id:3,
-            title: 'PC/Mac',
-            icon: require("./assets/PCIcon.png")
-        },
-        {
-            id:4,
-            title: 'Nintendo',
-            icon: require('./assets/NintendoIcon.png')
-        }
-      ];
-      
-    const Item = ({ item, onPress, backgroundColor, textColor }) => (
-        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
-            
-            <Image source={item.icon} style={{alignSelf:'center', flex:1, resizeMode:'contain',marginTop:20, paddingBottom:20}}/>
-            <Text style={[textColor, {fontSize:24, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
-        </TouchableOpacity>
-      );
+const DATA = [
+    {
+        id: 1,
+        title: "Playstation",
+        icon: require("./assets/PSIcon.png")
+    },
+    {
+        id: 2,
+        title: "Xbox",
+        icon: require("./assets/XboxIcon.png")
+    },
+    {
+        id:3,
+        title: 'PC/Mac',
+        icon: require("./assets/PCIcon.png")
+    },
+    {
+        id:4,
+        title: 'Nintendo',
+        icon: require('./assets/NintendoIcon.png')
+    }
+    ];
+    
+const Item = ({ item, onPress, backgroundColor, textColor }) => (
+    <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
+        
+        <Image source={item.icon} style={{alignSelf:'center', flex:1, resizeMode:'contain',marginTop:20, paddingBottom:20}}/>
+        <Text style={[textColor, {fontSize:24, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
+    </TouchableOpacity>
+    );
 
     
 
 export function QuizScreen1({navigation}) {
-    const [selectedId, setSelectedId] = useState([0,0,0,0]);
+    const [selectedId, setSelectedId] = useState([0,0,0,0,0]);
 
     const renderItem = ({ item }) => {
         const backgroundColor = selectedId[item.id-1] === 1 ? '#E9D5DA' : "#827397";
         const color = selectedId[item.id-1] === 1 ? "#827397" : '#E9D5DA';
-        let copyarray = selectedId;
-        const updatearray = () => {copyarray[item.id-1] === 1 ? copyarray[item.id-1]=0 : copyarray[item.id-1]=1; setSelectedId(copyarray);};
+        const updatearray = (loc) => {
+            let copyarray = [...selectedId];
+            copyarray[loc.id-1] === 1 ? copyarray[loc.id-1]=0 : copyarray[loc.id-1]=1;
+            setSelectedId(copyarray);
+        };
+        
         return (
           <Item
             item={item}
-            onPress={() => {updatearray()}}
+            onPress={() => {updatearray(item)}}
             backgroundColor={{ backgroundColor }}
             textColor={{ color }}
           />
@@ -116,3 +120,5 @@ export function QuizScreen1({navigation}) {
         </SafeAreaView>
     );
     }
+
+    
