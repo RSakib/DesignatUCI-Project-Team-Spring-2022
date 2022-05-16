@@ -25,12 +25,12 @@ export const My_styles = StyleSheet.create({
     starttop: {
       flex: 1,
       alignContent:'center',
-      justifyContent:'center'
+      justifyContent:'space-between'
     },
     AndroidSafeArea: {
         flex: 1,
         backgroundColor: "rgb(32,29,60)",
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight+25 : 0
+        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
       },
     Button: {
       backgroundColor: 'rgb(77,76,126)',
@@ -89,7 +89,8 @@ export const styles = StyleSheet.create({
       fontSize: 34,
       textAlign:'center',
       fontFamily:'FiraSans_600SemiBold',
-      alignContent: 'flex-start',
-      marginTop: 200,
+      alignContent: 'flex-end',
+      justifyContent:'flex-end',
+      marginTop:100
     },
   })

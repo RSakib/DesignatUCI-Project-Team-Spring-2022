@@ -15,13 +15,13 @@ export function StartScreen({navigation}) {
                         style={styles.Gradient}>
                     </LinearGradient>
                     <GameMatchSvg/>
-                    <Text style={text_styles.Orange_Start_Text}>{"\n"}Level Up Your{"\n"}Library {"\n"} {"\n"} See What You Have Missed Out On</Text>
+                    <Text style={text_styles.Orange_Start_Text}>{"\n"}Level Up Your{"\n"}Library {"\n"} {"\n"} See What You{"\n"}Missed Out On</Text>
                 </ImageBackground>
             </View>
             <View style={[]}>
                 <View style={[{justifyContent:'center', alignItems:'center', flex:0}]}>
                     <TouchableOpacity
-                        style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end', paddingLeft:50, paddingRight: 50, paddingTop:12, paddingBottom:12, marginBottom: 40}]}
+                        style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end', paddingLeft:30, paddingRight: 30, paddingTop:12, paddingBottom:12, marginBottom: 40}]}
                         onPress={() => navigation.navigate('quizScreen1')}
                         >
                             <Text style={[text_styles.Button]}>Let's Get Started</Text>
@@ -121,4 +121,3 @@ export function QuizScreen1({navigation}) {
     );
     }
 
-    

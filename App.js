@@ -8,6 +8,8 @@ import {HomeScreen, SearchScreen, BrowseScreen} from "./Screens.js";
 import { StartScreen, QuizScreen1 } from './QuizScreens.js';
 import AppLoading from 'expo-app-loading';
 import { useFonts, FiraSans_600SemiBold, FiraSans_500Medium } from '@expo-google-fonts/fira-sans';
+import SystemNavigationBar from 'react-native-system-navigation-bar';
+import { Platform } from 'react-native';
 
 const Stack = createNativeStackNavigator();
 
@@ -33,6 +35,9 @@ function App() {
     return <AppLoading />;
   }
   
+  
+  
+
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="startScreen">
