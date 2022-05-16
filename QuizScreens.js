@@ -67,16 +67,17 @@ export function StartScreen({navigation}) {
     
 
 export function QuizScreen1({navigation}) {
-    const [selectedId, setSelectedId] = useState(null);
+    const [selectedId, setSelectedId] = useState([0,0,0,0]);
 
     const renderItem = ({ item }) => {
-        const backgroundColor = item.id === selectedId ? '#E9D5DA' : "#827397";
-        const color = item.id === selectedId ? "#827397" : '#E9D5DA';
-    
+        const backgroundColor = selectedId[item.id-1] === 1 ? '#E9D5DA' : "#827397";
+        const color = selectedId[item.id-1] === 1 ? "#827397" : '#E9D5DA';
+        let copyarray = selectedId;
+        const updatearray = () => {copyarray[item.id-1] === 1 ? copyarray[item.id-1]=0 : copyarray[item.id-1]=1; setSelectedId(copyarray);};
         return (
           <Item
             item={item}
-            onPress={() => setSelectedId(item.id)}
+            onPress={() => {updatearray()}}
             backgroundColor={{ backgroundColor }}
             textColor={{ color }}
           />
