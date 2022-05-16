@@ -35,22 +35,22 @@ export function StartScreen({navigation}) {
 
     const DATA = [
         {
-          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
-          title: "First Item",
+            id: 1,
+            title: "Playstation",
+            icon: require("./assets/PSIcon.png")
         },
         {
-          id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
-          title: "Second Item",
-        },
-        {
-          id: "58694a0f-3da1-471f-bd96-145571e29d72",
-          title: "Third Item",
-        },
+            id: 2,
+            title: "Xbox",
+            icon: require("./assets/XboxIcon.png")
+        }
       ];
       
     const Item = ({ item, onPress, backgroundColor, textColor }) => (
-        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:2, justifyContent:'center',alignContent:'center', height:141}, backgroundColor]}>
-          <Text style={[styles.title, textColor]}>{item.title}</Text>
+        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
+            
+            <Image source={item.icon} style={{alignSelf:'center', flex:1, resizeMode:'contain'}}/>
+            <Text style={[textColor, {fontSize:20, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
         </TouchableOpacity>
       );
 
@@ -84,6 +84,7 @@ export function QuizScreen1({navigation}) {
                     </TouchableOpacity>
                     
                 </View>
+                <Text style={[text_styles.Button, {textAlign:'center', fontSize:32, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>Where Do You Play?</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
