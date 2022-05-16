@@ -8,8 +8,8 @@ import {HomeScreen, SearchScreen, BrowseScreen} from "./Screens.js";
 import { StartScreen, QuizScreen1 } from './QuizScreens.js';
 import AppLoading from 'expo-app-loading';
 import { useFonts, FiraSans_600SemiBold, FiraSans_500Medium } from '@expo-google-fonts/fira-sans';
-import SystemNavigationBar from 'react-native-system-navigation-bar';
-import { Platform } from 'react-native';
+import * as NavigationBar from 'expo-navigation-bar'
+
 
 const Stack = createNativeStackNavigator();
 
@@ -35,7 +35,7 @@ function App() {
     return <AppLoading />;
   }
   
-  
+  const visibility = NavigationBar.useVisibility()
   
 
   return (
