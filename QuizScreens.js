@@ -43,14 +43,24 @@ export function StartScreen({navigation}) {
             id: 2,
             title: "Xbox",
             icon: require("./assets/XboxIcon.png")
+        },
+        {
+            id:3,
+            title: 'PC/Mac',
+            icon: require("./assets/PCIcon.png")
+        },
+        {
+            id:4,
+            title: 'Nintendo',
+            icon: require('./assets/NintendoIcon.png')
         }
       ];
       
     const Item = ({ item, onPress, backgroundColor, textColor }) => (
         <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
             
-            <Image source={item.icon} style={{alignSelf:'center', flex:1, resizeMode:'contain'}}/>
-            <Text style={[textColor, {fontSize:20, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
+            <Image source={item.icon} style={{alignSelf:'center', flex:1, resizeMode:'contain',marginTop:20, paddingBottom:20}}/>
+            <Text style={[textColor, {fontSize:24, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
         </TouchableOpacity>
       );
 
@@ -74,7 +84,7 @@ export function QuizScreen1({navigation}) {
     
     return (
         <SafeAreaView style={My_styles.AndroidSafeArea}>
-            <View style={[My_styles.container, {backgroundColor:'red',flexDirection:'column',justifyContent:'space-between'}]}>
+            <View style={[My_styles.container, {flexDirection:'column',justifyContent:'space-between'}]}>
                 <View style={{flexDirection:'row', justifyContent:'space-between'}}>
                     <View style={[{flexDirection:'row',justifyContent:'flex-start', alignContent:'center'}]}>
                         <Image source={require('./assets/Page1.png')} style={[{height:41, width:70, marginLeft:15}]}/>
@@ -92,6 +102,7 @@ export function QuizScreen1({navigation}) {
                     extraData={selectedId}
                     numColumns={2}
                     contentContainerStyle={[{alignContent:'center'}]}
+                    style={{marginLeft:10, marginRight:10}}
                 ></FlatList>
 
                 <TouchableOpacity
