@@ -3,6 +3,7 @@ import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
+import { useState } from 'react';
 
 export function StartScreen({navigation}) {
     return (
@@ -32,8 +33,45 @@ export function StartScreen({navigation}) {
     );
     }
 
-export function QuizScreen1({navigation}) {
+    const DATA = [
+        {
+          id: "bd7acbea-c1b1-46c2-aed5-3ad53abb28ba",
+          title: "First Item",
+        },
+        {
+          id: "3ac68afc-c605-48d3-a4f8-fbd91aa97f63",
+          title: "Second Item",
+        },
+        {
+          id: "58694a0f-3da1-471f-bd96-145571e29d72",
+          title: "Third Item",
+        },
+      ];
+      
+    const Item = ({ item, onPress, backgroundColor, textColor }) => (
+        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:2, justifyContent:'center',alignContent:'center', height:141}, backgroundColor]}>
+          <Text style={[styles.title, textColor]}>{item.title}</Text>
+        </TouchableOpacity>
+      );
 
+    
+
+export function QuizScreen1({navigation}) {
+    const [selectedId, setSelectedId] = useState(null);
+
+    const renderItem = ({ item }) => {
+        const backgroundColor = item.id === selectedId ? '#E9D5DA' : "#827397";
+        const color = item.id === selectedId ? "#827397" : '#E9D5DA';
+    
+        return (
+          <Item
+            item={item}
+            onPress={() => setSelectedId(item.id)}
+            backgroundColor={{ backgroundColor }}
+            textColor={{ color }}
+          />
+        )};
+    
     return (
         <SafeAreaView style={My_styles.AndroidSafeArea}>
             <View style={[My_styles.container, {backgroundColor:'red',flexDirection:'column',justifyContent:'space-between'}]}>
@@ -46,9 +84,15 @@ export function QuizScreen1({navigation}) {
                     </TouchableOpacity>
                     
                 </View>
-                <FlatList>
-                    
-                </FlatList>
+                <FlatList
+                    data={DATA}
+                    renderItem={renderItem}
+                    keyExtractor={(item) => item.id}
+                    extraData={selectedId}
+                    numColumns={2}
+                    contentContainerStyle={[{alignContent:'center'}]}
+                ></FlatList>
+
                 <TouchableOpacity
                     style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5}]}
                     onPress={() => navigation.navigate('quizScreen1')}
