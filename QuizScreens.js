@@ -288,6 +288,29 @@ export function QuizScreen1({navigation}) {
 
     export function QuizScreen3({navigation}) {
 
+        const renderItem = ({ item }) => {
+            const backgroundColor = selectedId.indexOf(item.title) === -1 ? "#827397" : '#E9D5DA';
+            const color = selectedId.indexOf(item.title) === -1 ? '#E9D5DA' : "#827397";
+            const updatearray = (loc) => {
+                let copyarray = [...selectedId];
+                if (selectedId.indexOf(item.title) === -1) {
+                    copyarray.push(loc.title);
+                }
+                else
+                {
+                    copyarray = copyarray.filter(item => item !== loc.title);
+                }
+                setSelectedId(copyarray);
+            };
+            
+            return (
+              <Item
+                item={item}
+                onPress={() => {updatearray(item)}}
+                backgroundColor={{ backgroundColor }}
+                textColor={{ color }}
+              />
+            )};
 
         return(
             <SafeAreaView style={My_styles.AndroidSafeArea}>
