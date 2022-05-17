@@ -106,7 +106,7 @@ export function QuizScreen1({navigation}) {
                     </TouchableOpacity>
                     
                 </View>
-                <Text style={[text_styles.Button, {textAlign:'center', fontSize:3, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>Where Do You Play?</Text>
+                <Text style={[text_styles.Button, {textAlign:'center', fontSize:30, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>Where Do You Play?</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
