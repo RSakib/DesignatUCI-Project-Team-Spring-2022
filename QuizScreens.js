@@ -1,9 +1,10 @@
-import {TouchableOpacity, View, Text, FlatList, SafeAreaView, ImageBackground, Image } from 'react-native';
+import {TouchableOpacity, View, Text, FlatList, SafeAreaView, ImageBackground, Image, Dimensions } from 'react-native';
 import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
+
 
 export function StartScreen({navigation}) {
     return (
@@ -105,7 +106,7 @@ export function QuizScreen1({navigation}) {
                     </TouchableOpacity>
                     
                 </View>
-                <Text style={[text_styles.Button, {textAlign:'center', fontSize:32, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>Where Do You Play?</Text>
+                <Text style={[text_styles.Button, {textAlign:'center', fontSize:3, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>Where Do You Play?</Text>
                 <FlatList
                     data={DATA}
                     renderItem={renderItem}
@@ -185,14 +186,29 @@ export function QuizScreen1({navigation}) {
         {
             id:14,
             title: 'Puzzle'
+        },
+        {
+            id:15,
+            title: ''
         }
         ];
     
-    const TagItem = ({ item, onPress, backgroundColor, textColor }) => (
-        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, marginVertical:7, justifyContent:'flex-end',alignContent:'flex-end', borderRadius:20, paddingVertical:10}, backgroundColor]}>
+    const TagItem = ({ item, onPress, backgroundColor, textColor }) => {
+        if (item.title === '') {
+            return(
+            <TouchableOpacity onPress={onPress} style={[{flex:1, marginVertical:7, justifyContent:'flex-end',alignContent:'flex-end', paddingVertical:40}]}>
+            </TouchableOpacity>
+            );
+        }
+        else {
+            return(
+            <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, marginVertical:7, justifyContent:'flex-end',alignContent:'flex-end', borderRadius:20, paddingVertical:10}, backgroundColor]}>
             <Text style={[textColor, {fontSize:24, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:5, textAlign:'center'}]}>{item.title}</Text>
-        </TouchableOpacity>
-        );
+            </TouchableOpacity>
+            );
+        }
+        
+    };
 
 
     export function QuizScreen2({navigation}) {
@@ -235,7 +251,7 @@ export function QuizScreen1({navigation}) {
                     </TouchableOpacity>
                     
                 </View>
-                <Text style={[text_styles.Button, {textAlign:'center', fontSize:32, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>What Do You Play?</Text>
+                <Text style={[text_styles.Button, {textAlign:'center', fontSize:30, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>What Do You Play?</Text>
                 
                 <FlatList
                     data={Tags}
@@ -244,13 +260,13 @@ export function QuizScreen1({navigation}) {
                     extraData={selectedTags}
                     numColumns={2}
                     contentContainerStyle={[{alignContent:'center'}]}
-                    style={{marginLeft:10, marginRight:10}}
+                    style={{marginHorizontal:10}}
                 ></FlatList>
 
-                <View style={[{backgroundColor: '#00000009'}]}>
+                <View style={[{backgroundColor: 'rgba(32, 29, 60, 0.9)', position:'absolute', bottom:0, width:Dimensions.get('window').width, flex:1}]}>
                     <TouchableOpacity
                         style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5,marginTop:5, opacity:1}]}
-                        onPress={() => {navigation.navigate('quizScreen2');}}
+                        onPress={() => {navigation.navigate('quizScreen3');}}
                         >
                             <Text style={[text_styles.Button]}>Next</Text>
                     </TouchableOpacity>
@@ -259,4 +275,48 @@ export function QuizScreen1({navigation}) {
             </View>
         </SafeAreaView>
         );
+    }
+
+
+    const GameItem = ({ item, onPress, backgroundColor, textColor }) => (
+        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
+            
+            
+            <Text style={[textColor, {fontSize:24, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
+        </TouchableOpacity>
+        );
+
+    export function QuizScreen3({navigation}) {
+
+
+        return(
+            <SafeAreaView style={My_styles.AndroidSafeArea}>
+                <View style={[My_styles.container, {flexDirection:'column',justifyContent:'space-between'}]}>
+                <View style={{flexDirection:'row', justifyContent:'space-between'}}>
+                        <View style={[{flexDirection:'row',justifyContent:'flex-start', alignContent:'center'}]}>
+                            <Image source={require('./assets/Page1.png')} style={[{height:41, width:70, marginLeft:15}]}/>
+                        </View>
+                        <TouchableOpacity style={[{justifyContent:'flex-end', alignItems:'flex-end', marginRight:25}]} onPress={() => navigation.navigate('homeScreen')}>
+                                <Text style={[text_styles.Button,{textAlign:'right', fontFamily:'FiraSans_500Medium', fontSize:25, color:'#827397'}]}>Skip</Text>
+                        </TouchableOpacity>
+                        
+                    </View>
+                    <Text style={[text_styles.Button, {textAlign:'center', fontSize:30, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>What Have You Played?</Text>
+                    
+                    <FlatList
+                        
+                    ></FlatList>
+    
+                    <View style={[{backgroundColor: 'rgba(32, 29, 60, 0.9)', position:'absolute', bottom:0, width:Dimensions.get('window').width, flex:1}]}>
+                        <TouchableOpacity
+                            style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5,marginTop:5, opacity:1}]}
+                            onPress={() => {navigation.navigate('quizScreen3');}}
+                            >
+                                <Text style={[text_styles.Button]}>Next</Text>
+                        </TouchableOpacity>
+                    </View>
+                    
+                </View>
+            </SafeAreaView>
+            );
     }

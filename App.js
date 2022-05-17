@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {HomeScreen, SearchScreen, BrowseScreen} from "./Screens.js";
-import { StartScreen, QuizScreen1, QuizScreen2 } from './QuizScreens.js';
+import { StartScreen, QuizScreen1, QuizScreen2, QuizScreen3 } from './QuizScreens.js';
 import AppLoading from 'expo-app-loading';
 import { useFonts, FiraSans_600SemiBold, FiraSans_500Medium } from '@expo-google-fonts/fira-sans';
 
@@ -64,6 +64,13 @@ function App() {
         <Stack.Screen
           name="quizScreen2"
           component={QuizScreen2}
+          options={{
+            headerShown: false
+          }}
+        />
+        <Stack.Screen
+          name="quizScreen3"
+          component={QuizScreen3}
           options={{
             headerShown: false
           }}
