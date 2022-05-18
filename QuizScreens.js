@@ -354,12 +354,14 @@ export function QuizScreen1({navigation}) {
             data: datatext,
             })
             .then(response => {
-                setImageUrl(response.data[0]["url"]);
+                setImageUrl(response.data[0]["url"].replace("t_thumb", "t_cover_big"));
             })
             .catch(err => {
-                console.error(err);
+                ;
             });
 
+        
+        
         return(
         <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
             
