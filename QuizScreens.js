@@ -39,22 +39,26 @@ const DATA = [
     {
         id: 1,
         title: "Playstation",
-        icon: require("./assets/PSIcon.png")
+        icon: require("./assets/PSIcon.png"),
+        igdb: [48,167]
     },
     {
         id: 2,
         title: "Xbox",
-        icon: require("./assets/XboxIcon.png")
+        icon: require("./assets/XboxIcon.png"),
+        igdb: [49,169]
     },
     {
         id:3,
         title: 'PC/Mac',
-        icon: require("./assets/PCIcon.png")
+        icon: require("./assets/PCIcon.png"),
+        igdb: [6]
     },
     {
         id:4,
         title: 'Nintendo',
-        icon: require('./assets/NintendoIcon.png')
+        icon: require('./assets/NintendoIcon.png'),
+        igdb: [130]
     }
     ];
     
@@ -66,7 +70,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
     );
 
-    
+
 
 export function QuizScreen1({navigation}) {
     const [selectedId, setSelectedId] = useState([]);
@@ -134,59 +138,87 @@ export function QuizScreen1({navigation}) {
     const Tags = [
         {
             id: 1,
-            title: "Single Player"
+            title: "Single Player",
+            igdb: 1,
+            type: "game_mode"
         },
         {
             id: 2,
-            title: "Multiplayer"
+            title: "Multiplayer",
+            igdb: 2,
+            type: "game_mode"
         },
         {
             id:3,
-            title: 'Action'
+            title: 'Action',
+            igdb: 1,
+            type: 'theme'
         },
         {
             id:4,
-            title: 'Adventure'
+            title: 'Adventure',
+            igdb: 31,
+            type: "genre"
         },
         {
             id:5,
-            title: 'RPG'
+            title: 'RPG',
+            igdb: 12,
+            type: "genre"
         },
         {
             id:6,
-            title: 'Casual'
+            title: 'Horror',
+            type: "theme"
+
         },
         {
             id:7,
-            title: 'Indie'
+            title: 'Indie',
+            igdb: 32,
+            type: 'genre'
         },
         {
             id:8,
-            title: 'Shooter'
+            title: 'Shooter',
+            igdb: 5,
+            type: "genre"
         },
         {
             id:9,
-            title: 'Platformer'
+            title: 'Platformer',
+            igdb: 8,
+            type: 'genre'
         },
         {
             id:10,
-            title: 'Sports'
+            title: 'Sports',
+            igdb: 14,
+            type: 'genre'
         },
         {
             id:11,
-            title: 'Fighting'
+            title: 'Fighting',
+            igdb: 4,
+            type: 'genre'
         },
         {
             id:12,
-            title: 'Racing'
+            title: 'Racing',
+            igdb: 10,
+            type: 'genre'
         },
         {
             id:13,
-            title: 'Strategy'
+            title: 'Strategy',
+            igdb: 15,
+            type: 'genre'
         },
         {
             id:14,
-            title: 'Puzzle'
+            title: 'Puzzle',
+            igdb: 9,
+            type: 'genre'
         },
         {
             id:15,
@@ -314,17 +346,17 @@ export function QuizScreen1({navigation}) {
                 
 
             axios({
-                url: "https://api.igdb.com/v4/games",
+                url: "https://api.igdb.com/v4/game_modes",
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
                     'Authorization': token,
                 },
-                data: "fields name,platforms,cover; limit 2; where rating >= 80 & platforms = 48;",
+                data: 'fields id, name; limit 100;',
               })
                 .then(response => {
-                    console.log(response.data);
+                    console.log();
                 })
                 .catch(err => {
                     console.error(err);
