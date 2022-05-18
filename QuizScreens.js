@@ -70,7 +70,7 @@ const Item = ({ item, onPress, backgroundColor, textColor }) => (
     </TouchableOpacity>
     );
 
-
+let user_platforms = [];
 
 export function QuizScreen1({navigation}) {
     const [selectedId, setSelectedId] = useState([]);
@@ -99,6 +99,16 @@ export function QuizScreen1({navigation}) {
           />
         )};
     
+    const handleNextButton = () => {
+        for (let index = 0; index < DATA.length; index++) {
+            if (selectedId.indexOf(DATA[index].title) !== -1) {
+                user_platforms.push(DATA[index]);
+            };
+            
+        }
+        navigation.navigate('quizScreen2')
+    }
+    
     return (
         <SafeAreaView style={My_styles.AndroidSafeArea}>
             <View style={[My_styles.container, {flexDirection:'column',justifyContent:'space-between'}]}>
@@ -124,7 +134,7 @@ export function QuizScreen1({navigation}) {
 
                 <TouchableOpacity
                     style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5}]}
-                    onPress={() => {selectedId.join() === '' ? navigation.navigate('quizScreen1') : navigation.navigate('quizScreen2');}}
+                    onPress={() => {selectedId.join() === '' ? navigation.navigate('quizScreen1') : handleNextButton(selectedId);}}
                     >
                         <Text style={[text_styles.Button]}>Next</Text>
                 </TouchableOpacity>
@@ -245,6 +255,8 @@ export function QuizScreen1({navigation}) {
 
 
     export function QuizScreen2({navigation}) {
+        console.log(user_platforms);
+
         let [selectedTags, setSelectedTags] = useState([]);
 
         const renderTagItem = ({ item }) => {
