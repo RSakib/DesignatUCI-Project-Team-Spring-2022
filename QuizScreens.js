@@ -4,6 +4,7 @@ import GameMatchSvg from './svgs/GameMatchSvg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
 import React, { useEffect,useState } from 'react';
+import axios from 'axios';
 
 
 export function StartScreen({navigation}) {
@@ -297,7 +298,6 @@ export function QuizScreen1({navigation}) {
                 "method": "POST"
             });
             const authjson = await authresponse.json();
-            console.log(authjson);
             const access_token = authjson.access_token;
             return(access_token);
 
@@ -307,28 +307,29 @@ export function QuizScreen1({navigation}) {
         };
 
         const getGames = async () => {
-            try {
                 const access = await getAuth();
                 let token = 'Bearer ';
                 token += access;
-                console.log(token)
 
-                const response = await fetch('https://api.igdb.com/v4/games', {
-                    "method": "POST",
-                    "headers": {
-                        'Accept': 'application/json',
-                        'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
-                        'Authorization': token,
-                    },
-                    data: "cover"
+                
+
+            axios({
+                url: "https://api.igdb.com/v4/games",
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
+                    'Authorization': token,
+                },
+                data: "fields name,platforms,cover; limit 2; where rating >= 80 & platforms = 48;",
+              })
+                .then(response => {
+                    console.log(response.data);
+                })
+                .catch(err => {
+                    console.error(err);
                 });
-                const json = await response.json();
-                console.log(json);
-                setGameData(json.results);
 
-            } catch (error) {
-                console.error(error)
-            }
         }
 
         useEffect(() => {
