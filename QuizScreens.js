@@ -179,7 +179,8 @@ export function QuizScreen1({navigation}) {
         {
             id:6,
             title: 'Horror',
-            type: "theme"
+            type: "theme",
+            igdb: 19
 
         },
         {
@@ -365,7 +366,7 @@ export function QuizScreen1({navigation}) {
         return(
         <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
             
-            <Image source={{uri: "https:" + imageurl}} style={[styles.image,{borderRadius:10}]} />
+            <Image source={{uri: "https:" + imageurl}} style={[{borderRadius:10, flex:1, justifyContent:'flex-start'}]} />
         </TouchableOpacity>
         );}
     
