@@ -291,17 +291,39 @@ export function QuizScreen1({navigation}) {
 
         const [gamedata, setGameData] = useState([]);
 
+        const getAuth = async () => {
+        try {
+            const authresponse = await fetch('https://id.twitch.tv/oauth2/token?client_id=p87mxmn6f2u82czno5rcacviov4gbv&client_secret=2jtympxbjru5yukxet5u0voaeogjsp&grant_type=client_credentials', {
+                "method": "POST"
+            });
+            const authjson = await authresponse.json();
+            console.log(authjson);
+            const access_token = authjson.access_token;
+            return(access_token);
+
+        } catch (error) {
+            console.error(error)
+        }
+        };
+
         const getGames = async () => {
             try {
-                const response = await fetch('https://rawg-video-games-database.p.rapidapi.com/games?key=de0cbbd410c5410d8b0698700fcc771e', {
-                    "method": "GET",
+                const access = await getAuth();
+                let token = 'Bearer ';
+                token += access;
+                console.log(token)
+
+                const response = await fetch('https://api.igdb.com/v4/games', {
+                    "method": "POST",
                     "headers": {
-                        'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
-                        'X-RapidAPI-Key': '791d18b8fcmshdc1b61626aba162p1b1a54jsna3f8a20e6393',
+                        'Accept': 'application/json',
+                        'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
+                        'Authorization': token,
                     },
-                    
+                    data: "cover"
                 });
                 const json = await response.json();
+                console.log(json);
                 setGameData(json.results);
 
             } catch (error) {
