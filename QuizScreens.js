@@ -365,7 +365,7 @@ export function QuizScreen1({navigation}) {
         return(
         <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
             
-            <Image source={{uri: "https:" + imageurl}} style={[{borderRadius:10, flex: 1}]} />
+            <Image source={{uri: "https:" + imageurl}} style={[styles.image,{borderRadius:10}]} />
         </TouchableOpacity>
         );}
     
@@ -377,22 +377,41 @@ export function QuizScreen1({navigation}) {
     let token = 'Bearer '
 
     export function QuizScreen3({navigation}) {
+        let genre = false;
+        let game_mode = false;
+        let theme = false;
+
+
+
         for (let index = 0; index < user_tags.length; index++) {
             if(user_tags[index].type === 'genre') {
                 user_genresids.push(user_tags[index].igdb);
+                if (user_genresids !== []) {
+                    genre = true;
+                }
             }
             else if(user_tags[index].type === 'game_mode') {
                 user_game_modeids.push(user_tags[index].igdb);
+                if (user_game_modeids !== []) {
+                    game_mode = true;
+                }
+                
             }
             else if(user_tags[index].type === 'theme') {
                 user_themeids.push(user_tags[index].igdb);
+                if (user_themeids !== []) {
+                    theme = true;
+                }
             }
         }
+
+        
+
         for (let index = 0; index < user_platforms.length; index++) {
             user_platformids = user_platformids.concat(user_platforms[index].igdb);
         }
 
-        console.log(user_platformids);
+        
 
         const [gamedata, setGameData] = useState([]);
 
@@ -414,7 +433,34 @@ export function QuizScreen1({navigation}) {
                 const access = await getAuth();
                 token += access;
 
+                let maindatatext = 'fields cover, name; limit 10; sort rating desc; where rating >= 80 ';
+                maindatatext += "& platforms = (";
+                maindatatext += user_platformids.join();
+                maindatatext += ") ";
+                console.log(user_genresids.length);
+                try {
+                    if (genre) {
+                        maindatatext += "& genres = (";
+                        maindatatext += user_genresids.join();
+                        maindatatext += ") ";
+                    }
+                    if (game_mode) {
+                        maindatatext += "& game_modes = (";
+                        maindatatext += user_game_modeids.join();
+                        maindatatext += ") ";
+                    }
+                    if (theme) {
+                        maindatatext += "& themes = (";
+                        maindatatext += user_themeids.join();
+                        maindatatext += ") ";
+                    }
+                } catch (error) {
+                    
+                }
                 
+                console.log(maindatatext);
+
+                maindatatext += ";";
 
             axios({
                 url: "https://api.igdb.com/v4/games",
@@ -424,7 +470,7 @@ export function QuizScreen1({navigation}) {
                     'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
                     'Authorization': token,
                 },
-                data: 'fields cover, name; limit 10; where rating > 95;',
+                data: maindatatext,
               })
                 .then(response => {
                     setGameData(response.data);
