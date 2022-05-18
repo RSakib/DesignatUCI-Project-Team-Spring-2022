@@ -3,7 +3,7 @@ import { styles, My_styles, text_styles } from './Styles';
 import GameMatchSvg from './svgs/GameMatchSvg';
 import { LinearGradient } from 'expo-linear-gradient';
 import { useNavigation } from '@react-navigation/native';
-import { useState } from 'react';
+import React, { useEffect,useState } from 'react';
 
 
 export function StartScreen({navigation}) {
@@ -278,39 +278,52 @@ export function QuizScreen1({navigation}) {
     }
 
 
+
+
     const GameItem = ({ item, onPress, backgroundColor, textColor }) => (
         <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
             
-            
-            <Text style={[textColor, {fontSize:24, marginLeft:15, fontFamily:'FiraSans_500Medium', marginBottom:5, marginTop:10}]}>{item.title}</Text>
+            <Image source={{uri: item.background_image}} style={[styles.image, {borderRadius:10}]} />
         </TouchableOpacity>
         );
 
     export function QuizScreen3({navigation}) {
 
-        const renderItem = ({ item }) => {
-            const backgroundColor = selectedId.indexOf(item.title) === -1 ? "#827397" : '#E9D5DA';
-            const color = selectedId.indexOf(item.title) === -1 ? '#E9D5DA' : "#827397";
-            const updatearray = (loc) => {
-                let copyarray = [...selectedId];
-                if (selectedId.indexOf(item.title) === -1) {
-                    copyarray.push(loc.title);
-                }
-                else
-                {
-                    copyarray = copyarray.filter(item => item !== loc.title);
-                }
-                setSelectedId(copyarray);
-            };
-            
+        const [gamedata, setGameData] = useState([]);
+
+        const getGames = async () => {
+            try {
+                const response = await fetch('https://rawg-video-games-database.p.rapidapi.com/games?key=de0cbbd410c5410d8b0698700fcc771e', {
+                    "method": "GET",
+                    "headers": {
+                        'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com',
+                        'X-RapidAPI-Key': '791d18b8fcmshdc1b61626aba162p1b1a54jsna3f8a20e6393',
+                    },
+                    
+                });
+                const json = await response.json();
+                setGameData(json.results);
+
+            } catch (error) {
+                console.error(error)
+            }
+        }
+
+        useEffect(() => {
+            getGames();
+        }, []);
+
+        const renderGameItem = ({ item }) => {
+            const backgroundColor = '#E9D5DA';
+            const color = "#827397";
             return (
-              <Item
-                item={item}
-                onPress={() => {updatearray(item)}}
-                backgroundColor={{ backgroundColor }}
-                textColor={{ color }}
-              />
-            )};
+                <GameItem
+                  item={item}
+                  onPress={() => {}}
+                  backgroundColor={{ backgroundColor }}
+                  textColor={{ color }}
+                />
+              )};
 
         return(
             <SafeAreaView style={My_styles.AndroidSafeArea}>
@@ -327,13 +340,18 @@ export function QuizScreen1({navigation}) {
                     <Text style={[text_styles.Button, {textAlign:'center', fontSize:30, paddingBottom:20, paddingTop:10, color:'#E4842E'}]}>What Have You Played?</Text>
                     
                     <FlatList
-                        
+                    data={gamedata}
+                    renderItem={renderGameItem}
+                    keyExtractor={(item) => item.id}
+                    numColumns={2}
+                    contentContainerStyle={[{alignContent:'center'}]}
+                    style={{marginHorizontal:10}}
                     ></FlatList>
     
                     <View style={[{backgroundColor: 'rgba(32, 29, 60, 0.9)', position:'absolute', bottom:0, width:Dimensions.get('window').width, flex:1}]}>
                         <TouchableOpacity
                             style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5,marginTop:5, opacity:1}]}
-                            onPress={() => {navigation.navigate('quizScreen3');}}
+                            onPress={() => {console.log(gamedata);}}
                             >
                                 <Text style={[text_styles.Button]}>Next</Text>
                         </TouchableOpacity>
