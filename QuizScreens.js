@@ -254,8 +254,10 @@ export function QuizScreen1({navigation}) {
     };
 
 
+    let user_tags = [];
+
+
     export function QuizScreen2({navigation}) {
-        console.log(user_platforms);
 
         let [selectedTags, setSelectedTags] = useState([]);
 
@@ -282,6 +284,16 @@ export function QuizScreen1({navigation}) {
                 textColor={{ color }}
               />
             )};
+
+            const handleNextButton = () => {
+                for (let index = 0; index < Tags.length; index++) {
+                    if (selectedTags.indexOf(Tags[index].title) !== -1) {
+                        user_tags.push(Tags[index]);
+                    };
+                    
+                }
+                navigation.navigate('quizScreen3')
+            }
 
 
         return(
@@ -311,7 +323,7 @@ export function QuizScreen1({navigation}) {
                 <View style={[{backgroundColor: 'rgba(32, 29, 60, 0.9)', position:'absolute', bottom:0, width:Dimensions.get('window').width, flex:1}]}>
                     <TouchableOpacity
                         style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5,marginTop:5, opacity:1}]}
-                        onPress={() => {navigation.navigate('quizScreen3');}}
+                        onPress={() => {handleNextButton(selectedTags);}}
                         >
                             <Text style={[text_styles.Button]}>Next</Text>
                     </TouchableOpacity>
@@ -325,14 +337,60 @@ export function QuizScreen1({navigation}) {
 
 
 
-    const GameItem = ({ item, onPress, backgroundColor, textColor }) => (
+    const GameItem = ({ item, onPress, backgroundColor }) => {
+        const [imageurl, setImageUrl] = useState();
+        let datatext = 'fields url; limit 1; where game=';
+        datatext += item["id"];
+        datatext += ";"
+        
+        axios({
+            url: "https://api.igdb.com/v4/covers",
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
+                'Authorization': token,
+            },
+            data: datatext,
+            })
+            .then(response => {
+                setImageUrl(response.data[0]["url"]);
+            })
+            .catch(err => {
+                console.error(err);
+            });
+
+        return(
         <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
             
-            <Image source={{uri: item.background_image}} style={[styles.image, {borderRadius:10}]} />
+            <Image source={{uri: "https:" + imageurl}} style={[{borderRadius:10, flex: 1}]} />
         </TouchableOpacity>
-        );
+        );}
+    
+    let user_genresids = [];
+    let user_game_modeids = [];
+    let user_themeids = [];
+    let user_platformids = [];
+
+    let token = 'Bearer '
 
     export function QuizScreen3({navigation}) {
+        for (let index = 0; index < user_tags.length; index++) {
+            if(user_tags[index].type === 'genre') {
+                user_genresids.push(user_tags[index].igdb);
+            }
+            else if(user_tags[index].type === 'game_mode') {
+                user_game_modeids.push(user_tags[index].igdb);
+            }
+            else if(user_tags[index].type === 'theme') {
+                user_themeids.push(user_tags[index].igdb);
+            }
+        }
+        for (let index = 0; index < user_platforms.length; index++) {
+            user_platformids = user_platformids.concat(user_platforms[index].igdb);
+        }
+
+        console.log(user_platformids);
 
         const [gamedata, setGameData] = useState([]);
 
@@ -352,23 +410,22 @@ export function QuizScreen1({navigation}) {
 
         const getGames = async () => {
                 const access = await getAuth();
-                let token = 'Bearer ';
                 token += access;
 
                 
 
             axios({
-                url: "https://api.igdb.com/v4/game_modes",
+                url: "https://api.igdb.com/v4/games",
                 method: 'POST',
                 headers: {
                     'Accept': 'application/json',
                     'Client-ID': 'p87mxmn6f2u82czno5rcacviov4gbv',
                     'Authorization': token,
                 },
-                data: 'fields id, name; limit 100;',
+                data: 'fields cover, name; limit 10; where rating > 95;',
               })
                 .then(response => {
-                    console.log();
+                    setGameData(response.data);
                 })
                 .catch(err => {
                     console.error(err);
@@ -388,7 +445,6 @@ export function QuizScreen1({navigation}) {
                   item={item}
                   onPress={() => {}}
                   backgroundColor={{ backgroundColor }}
-                  textColor={{ color }}
                 />
               )};
 
