@@ -362,13 +362,21 @@ export function QuizScreen1({navigation}) {
             });
 
         
-        
-        return(
-        <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
-            
-            <Image source={{uri: "https:" + imageurl}} style={[{borderRadius:10, flex:1, justifyContent:'flex-start'}]} />
-        </TouchableOpacity>
-        );}
+        if (item.id === -1) {
+            return(
+                <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:125, borderRadius:10}]}>
+                </TouchableOpacity>
+                );
+        }
+        else {
+            return(
+                <TouchableOpacity onPress={onPress} style={[{flex:1, margin:5, justifyContent:'flex-end',alignContent:'flex-end', height:141, borderRadius:10}, backgroundColor]}>
+                    
+                    <Image source={{uri: "https:" + imageurl}} style={[{borderRadius:10, flex:1, justifyContent:'flex-start'}]} />
+                </TouchableOpacity>
+                );
+        }
+        }
     
     let user_genresids = [];
     let user_game_modeids = [];
@@ -474,11 +482,11 @@ export function QuizScreen1({navigation}) {
                 data: maindatatext,
               })
                 .then(response => {
-                    setGameData(response.data);
+                    setGameData(response.data, {id:-1});
                 })
                 .catch(err => {
-                    console.error(err);
                 });
+                
 
         }
 
@@ -523,7 +531,7 @@ export function QuizScreen1({navigation}) {
                     <View style={[{backgroundColor: 'rgba(32, 29, 60, 0.9)', position:'absolute', bottom:0, width:Dimensions.get('window').width, flex:1}]}>
                         <TouchableOpacity
                             style={[My_styles.Button, {alignItems:'center', justifyContent:'flex-end',marginBottom:30, marginLeft:30, marginRight: 30, padding:5,marginTop:5, opacity:1}]}
-                            onPress={() => {console.log(gamedata);}}
+                            onPress={() => {navigation.navigate('homeScreen');}}
                             >
                                 <Text style={[text_styles.Button]}>Next</Text>
                         </TouchableOpacity>
